@@ -1,6 +1,6 @@
 (* -*- tuareg -*- *)
 
-let succes = [
+let successes = [
   "array.affe";
   "region.affe";
   "basics.affe";
@@ -13,9 +13,10 @@ let succes = [
   "example.affe";
   "pool.affe";
   "test_un.affe";
+  "foreign.affe";
 ]
 
-let fail = [
+let failures = [
   "fail.affe";
   "nonlexical.affe";
 ]
@@ -52,5 +53,5 @@ let stanza_fail s =
 
 let () =
   Jbuild_plugin.V1.send @@ String.concat "\n"
-    (List.map stanza_success succes
-     @ List.map stanza_fail fail)
+    (List.map stanza_success successes
+     @ List.map stanza_fail failures)

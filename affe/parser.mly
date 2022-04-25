@@ -73,8 +73,8 @@ toplevel: command SEMISEMI { $1 }
 command:
   | LET r=rec_flag name=name args=list(simple_pattern) EQUAL expr=expr
     { mk_decl r name args expr }
-  | VAL name=name DOUBLECOLON typ=type_scheme
-    { ValueDef { name ; typ } }
+  | VAL name=name opt_external_name=option (STRING) DOUBLECOLON typ=type_scheme
+    { ValueDef { name ; opt_external_name ; typ } }
   | typdecl=type_decl { typdecl }
   | IMPORT s = STRING { Import s }
 

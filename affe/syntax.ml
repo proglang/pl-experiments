@@ -116,8 +116,9 @@ type decl = {
 }
 
 type def = {
-  name : Name.t ;
-  typ : T.scheme ;
+    name : Name.t ;
+    opt_external_name : string option ;
+    typ : T.scheme ;
 }
 
 type command =
@@ -291,10 +292,10 @@ module Rename = struct
       let constraints = constrs ~kvarenv ~tyvarenv ~tyenv constraints in
       let kind = kind_expr ~kvarenv kind in
       TypeDecl { name ; params ; constructor ; constraints ; kind }
-    | ValueDef { name = {name} ; typ } ->
+    | ValueDef { name = {name} ; opt_external_name ; typ } ->
       let typ = type_scheme tyenv typ in
       let name = Name.create ?name () in
-      ValueDef { name ; typ }
+      ValueDef { name ; opt_external_name ; typ }
     | Import s -> Import s
 
 end

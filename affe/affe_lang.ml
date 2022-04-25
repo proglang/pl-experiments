@@ -78,7 +78,7 @@ include Zoo.Main (struct
         (* Printer.env env.ty *)
         ;
         add_def name scheme v env
-      | Syntax.ValueDef {name ; typ} ->
+      | Syntax.ValueDef {name ; opt_external_name = _ ; typ} ->
         let _typ_env, scheme =
           harness @@ fun () ->
           Transl.transl_type_scheme ~env:env.ty typ
